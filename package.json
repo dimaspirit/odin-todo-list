@@ -1,0 +1,19 @@
+{
+  "name": "odin-todo-list",
+  "version": "1.0.0",
+  "description": "The description of the project can be found here https://www.theodinproject.com/lessons/node-path-javascript-todo-list",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dimaspirit/odin-todo-list.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dimaspirit/odin-todo-list/issues"
+  },
+  "homepage": "https://github.com/dimaspirit/odin-todo-list#readme"
+}
