@@ -19,6 +19,9 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, Helvetica, Arial, "Helvetica Neue", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  display: flex;
+  flex-direction: column;
 }
 
 img, picture, video, canvas, svg {
@@ -44,4 +47,32 @@ h1, h2, h3, h4, h5, h6 {
 
 #root, #__next {
   isolation: isolate;
+}
+
+.container {
+  flex-grow: 1;
+
+  display: flex;
+}
+
+.main {
+  flex-grow: 1;
+}
+
+.nav {
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  button {
+    padding: 8px 16px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
 }
