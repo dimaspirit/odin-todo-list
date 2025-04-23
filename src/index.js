@@ -1,5 +1,7 @@
 import "./styles/base.css";
 
+import UI from './ui';
+
 const Todo = ({title, description, dueDate, priority, projectId} = {}) => {
   return {
     title,
@@ -23,41 +25,36 @@ class Project {
   }
 }
 
-class UI {
-  constructor(containerQuery) {
-    this.containerEl = document.querySelector(containerQuery);
-    this.navEl = this.containerEl.querySelector('#nav');
-  }
-
-  renderNavItems(project) {
-    const liEl = document.createElement('li');
-    const buttonEl = document.createElement('button');
-    buttonEl.dataset.id = project.id;
-    buttonEl.textContent = project.name;
-
-    liEl.appendChild(buttonEl);
-    return liEl;
-  }
-
-  renderNav(projects) {
-    const ulEl = document.createElement('ul');
-    const buttonNewEl = document.createElement('button');
-    buttonNewEl.textContent = `${String.fromCodePoint('0x1F680')} New Project`;
-
-    projects.forEach(project => {
-      ulEl.appendChild(this.renderNavItems(project));
-    });
-
-    this.navEl.appendChild(ulEl);
-    this.navEl.appendChild(buttonNewEl);
+const TodosList = {
+  getTodosByProjectId: function(todos, projectId) {
+    return todos.filter(todo => todo.projectId === projectId);
   }
 }
 
-const appUI = new UI('.container');
+
+const appUI = new UI('.container', {
+  changeActiveProject: (projectId) => {
+    handleActiveProjectId(projectId);
+  }
+});
+
+let activeProjectId;
+
 
 const workProject = new Project('Work');
 const defaultProject = new Project('Unassigned');
 
-appUI.renderNav([workProject, defaultProject]);
+activeProjectId = workProject.id;
 
 const todo = Todo({title: 'Swith on the computer', projectId: workProject.id});
+
+
+appUI.renderNav([workProject, defaultProject], activeProjectId);
+appUI.renderMain(TodosList.getTodosByProjectId([todo], activeProjectId));
+
+const handleActiveProjectId = (projectId) => {
+  activeProjectId = projectId;
+  console.log(TodosList.getTodosByProjectId([todo], activeProjectId))
+  appUI.renderNav([workProject, defaultProject]);
+  appUI.renderMain(TodosList.getTodosByProjectId([todo], activeProjectId));
+}
